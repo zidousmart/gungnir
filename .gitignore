@@ -1,0 +1,6 @@
+.idea/
+tmp/
+*.lock
+/vendor/*
+*.log
+/logs
