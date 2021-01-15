@@ -71,20 +71,12 @@ func New(config *GRedisConfig) (*GRedisClient, error) {
 }
 
 type GRedisStats struct {
-	PoolActiveCount int
-	PoolIdleCount   int
-	WaitCount       int64
-	WaitDuration    time.Duration
+	Stats redis.PoolStats
 }
 
 func (r *GRedisClient) Status() *GRedisStats {
-	stats := r.p.Stats()
-
 	return &GRedisStats{
-		PoolActiveCount: stats.ActiveCount,
-		PoolIdleCount:   stats.IdleCount,
-		WaitCount:       stats.WaitCount,
-		WaitDuration:    stats.WaitDuration,
+		Stats: r.p.Stats(),
 	}
 }
 
